@@ -35,3 +35,6 @@ class Session(models.Model):
     # There can be several sessions of a course
     course_id = fields.Many2one('openacademy.course',
                                 ondelete='cascade', string="Course", required=True)
+
+    # There can be several attendees for a course session. There can be several course sessions for an attendee.                            
+    attendee_ids = fields.Many2many('res.partner', string="Attendees")
