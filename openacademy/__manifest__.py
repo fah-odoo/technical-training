@@ -1,17 +1,22 @@
 # -*- coding: utf-8 -*-
 {
-    'name':        "OpenAcademy",
+    'name':        "Citadel",
 
     'summary':
                    """
-                   Openacademy
+                   Manage classes
                    """,
 
     'description': """
-        Manage course, classes, teachers, students, ...
+        Module for managing trainings in a citadel:
+            - classes, 
+            - teachers, 
+            - students, 
+            - sessions,
+            - and more...
     """,
 
-    'author':      "Odoo",
+    'author':      "The citadel of the seven kingdoms",
     'website':     "http://www.odoo.com",
 
     # Categories can be used to filter modules in modules listing
@@ -27,7 +32,10 @@
     'data':        [
         "security/ir.model.access.csv",
         "data/openacademy_data.xml",
+        "views/templates.xml",
     ],
     # only loaded in demonstration mode
-    'demo':        [],
+    'demo':        [
+        "demo/demo.xml",
+    ],
 }
