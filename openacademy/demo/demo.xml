@@ -5,6 +5,7 @@
         <field name="description"> Mandatory. For people with little or no fencing experience.
         Basics of footwork, techniques for the foil, epee, and sabre. 
         </field>
+    </record>
     <record model="openacademy.course" id="courseFencing2">
         <field name="name">Course: Fencing Lvl2</field>
         <field name="description"> Mandatory. Advancement of fencing movements (footwork and blade work), improvement of tactical abilities, fitness. 
