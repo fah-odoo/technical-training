@@ -1,2 +1,1 @@
 id,name,model_id/id,group_id/id,perm_read,perm_write,perm_create,perm_unlink
-access_openacademy_openacademy,openacademy_name_does_not_matter,model_openacademy_openacademy,,1,0,0,0
