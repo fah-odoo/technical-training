@@ -1,0 +1,34 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<odoo>
+
+    <record model="ir.ui.view" id="book_form_view">
+        <field name="name">book.form</field>
+        <field name="model">library.book</field>
+        <field name="arch" type="xml">
+            <form string="Book Form">
+                <sheet>
+                    <group>
+                        <field name="name"/>
+                        <field name="author_ids"/>
+                    </group>
+                    <notebook>
+                        <page string="Date">
+                            <field name="edition_date"/>
+                        </page>
+                    </notebook>
+                </sheet>
+            </form>
+        </field>
+    </record>
+
+    <!-- top level menu: no parent -->
+    <menuitem id="main_library_menu" name="Library"/>
+    <!-- A first level in the left side menu is needed
+                before using action= attribute -->
+    <menuitem id="library_menu" name="Library" parent="main_library_menu"/>
+    <!-- the following menuitem should appear *after*
+                its parent openacademy_menu and *after* its
+                action course_list_action -->
+
+</odoo>
+

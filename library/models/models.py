@@ -1,5 +1,11 @@
 from odoo import models, fields, api
 
+
+class library(models.Model):
+    _name = 'library.library'
+    
+    name = fields.Char()
+
 class Book(models.Model):
     _name = 'library.book'
     _description = 'Book'
