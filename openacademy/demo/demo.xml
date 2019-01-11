@@ -5,15 +5,30 @@
         <field name="description"> Mandatory. For people with little or no fencing experience.
         Basics of footwork, techniques for the foil, epee, and sabre. 
         </field>
+        <field name="level">1</field>
     </record>
     <record model="openacademy.course" id="courseFencing2">
         <field name="name">Course: Fencing Lvl2</field>
         <field name="description"> Mandatory. Advancement of fencing movements (footwork and blade work), improvement of tactical abilities, fitness. 
-        </field>        
+        </field>      
+        <field name="level">2</field>  
     </record>
     <record model="openacademy.course" id="courseAlgebra">
         <field name="name">Course: Algebra</field>
         <field name="description"> Optional. An introduction to groups and rings, linear algebra, structures on vector spaces. </field>
+    </record>
+
+    <record model="res.partner" id="maesterAemon">
+        <field name="name">Aemon</field>
+        <field name="instructor" eval="True"/>
+    </record>
+
+    <record id="sessionFencing1" model="openacademy.session">
+        <field name="name">Fencing 1 - Session 1</field>
+        <field name="duration">50</field>
+        <field name="instructor_id" ref="maesterAemon"/>
+        <field name="course_id" ref="courseFencing1"/>
+        <field name="state">confirmed</field>
     </record>
 
 
