@@ -28,11 +28,14 @@ class Session(models.Model):
     _name = 'openacademy.session'
 
     name = fields.Char(required=True)
-    start_date = fields.Date()
+
+    # The start date is today if not specified
+    start_date = fields.Date(default=fields.Date.today)
     duration = fields.Float(digits=(6, 2), help="Duration in days")
     seats = fields.Integer(string="Number of seats")
 
-    archive = fields.Boolean(default=False)
+    # Sessions are active (not archived) by default
+    active = fields.Boolean(default=True)
     # One instructor can teach several course sessions
     
     # instructor is set to True OR the name contains (case insensitive) "teacher"
