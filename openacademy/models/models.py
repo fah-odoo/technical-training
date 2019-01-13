@@ -1,5 +1,6 @@
 # -*- coding: utf-8 -*-
 
+# exceptions is for constrains()
 from odoo import api, exceptions, fields, models
 
 
@@ -23,6 +24,32 @@ class Course(models.Model):
 
     level = fields.Selection(
         [(1, 'Easy'), (2, 'Medium'), (3, 'Hard')], string="Difficulty Level")
+
+    # To create a "copy" of a course
+    @api.multi
+    def copy(self, default=None):
+        default = dict(default or {})
+
+        copied_count = self.search_count(
+            [('name', '=like', u"Copy of {}%".format(self.name))])
+        if not copied_count:
+            new_name = u"Copy of {}".format(self.name)
+        else:
+            new_name = u"Copy of {} ({})".format(self.name, copied_count)
+
+        default['name'] = new_name
+        return super(Course, self).copy(default)
+
+    # Forbidding course duplicates
+    _sql_constraints = [
+        ('name_description_check',
+         'CHECK(name != description)',
+         "The title of the course should not be the description"),
+
+        ('name_unique',
+         'UNIQUE(name)',
+         "The course title must be unique"),
+    ]
 
 class Session(models.Model):
     _name = 'openacademy.session'
@@ -55,6 +82,7 @@ class Session(models.Model):
 
     taken_seats = fields.Float(string="Taken seats", compute='_taken_seats')
 
+    # maximum seats using depends
     @api.depends('seats', 'attendee_ids')
     def _taken_seats(self):
         for r in self:
@@ -62,6 +90,30 @@ class Session(models.Model):
                 r.taken_seats = 0.0
             else:
                 r.taken_seats = 100.0 * len(r.attendee_ids) / r.seats
+
+    # maximum seats using onchange
+    @api.onchange('seats', 'attendee_ids')
+    def _change_taken_seats(self):
+        if self.taken_seats > 100:
+            return {'warning': {
+                'title':   'Too many attendees',
+                'message': 'The room has %s available seats and there is %s attendees registered' % (self.seats, len(self.attendee_ids))
+            }}
+
+    # maximum seats using constrains
+    @api.constrains('seats', 'attendee_ids')
+    def _check_taken_seats(self):
+        for session in self:
+            if session.taken_seats > 100:
+                raise exceptions.ValidationError('The room has %s available seats and there is %s attendees registered' % (
+                    session.seats, len(session.attendee_ids)))
+
+    # maximum seats using sql constraints
+    _sql_constraints = [
+        # possible only if taken_seats is stored
+        ('session_full', 'CHECK(taken_seats <= 100)', 'The room is full'),
+    ]
+
 
     @api.onchange('seats', 'attendee_ids')
     def _verify_valid_seats(self):
@@ -80,10 +132,10 @@ class Session(models.Model):
                 },
             }
 
-    @api.onchange('seats', 'attendee_ids')
-    def _change_taken_seats(self):
-        if self.taken_seats > 100:
-            return {'warning': {
-                'title':   'Too many attendees',
-                'message': 'The room has %s available seats and there is %s attendees registered' % (self.seats, len(self.attendee_ids))
-            }}
+    @api.constrains('instructor_id', 'attendee_ids')
+    def _check_instructor_not_in_attendees(self):
+        for r in self:
+            if r.instructor_id and r.instructor_id in r.attendee_ids:
+                raise exceptions.ValidationError("A session's instructor can't be an attendee")
+
+
