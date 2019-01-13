@@ -1,6 +1,7 @@
 # -*- coding: utf-8 -*-
 
-from odoo import models, fields, api
+from odoo import api, exceptions, fields, models
+
 
 class openacademy(models.Model):
     _name = 'openacademy.openacademy'
@@ -33,7 +34,13 @@ class Session(models.Model):
 
     archive = fields.Boolean(default=False)
     # One instructor can teach several course sessions
-    instructor_id = fields.Many2one('res.partner', string="Instructor")
+    
+    # instructor is set to True OR the name contains (case insensitive) "teacher"
+    instructor_id = fields.Many2one('res.partner', string="Instructor",
+                                    domain=['|', ('instructor', '=', True),
+                                            ('category_id.name', 'ilike', "Teacher")])
+
+
     state = fields.Selection([('draft', "Draft"), ('confirmed', "Confirmed"), ('done', "Done")], default='draft')
     
     # There can be several sessions of a course
