@@ -22,7 +22,6 @@
     <record model="openacademy.course" id="courseAlgebra">
         <field name="name">Course: Algebra</field>
         <field name="description"> Optional. An introduction to groups and rings, linear algebra, structures on vector spaces. </field>
-        <field name="responsible_id" ref="maesterAemon"/>
     </record>
 
     <record model="res.partner" id="studentFah">
