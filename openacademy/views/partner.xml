@@ -12,11 +12,8 @@
                     <group>
                         <field name="instructor"/>
                         <field name="session_ids"/>
+                        <field name="session_count"/>
                     </group>
-                </page>
-                <page string="Attended Sessions" name="openacademy">
-                    <field name="session_ids"/>
-                    <field name="session_count"/>
                 </page>
             </notebook>
         </field>
@@ -27,9 +24,6 @@
         <field name="res_model">res.partner</field>
         <field name="view_mode">tree,form</field>
     </record>
-    <!-- <menuitem id="configuration_menu" name="Configuration" parent="main_openacademy_menu"/> -->
-    <!-- <menuitem id="contact_menu" name="Contacts" parent="configuration_menu" action="contact_list_action"/> -->
-    <menuitem id="contact_menu" name="Contacts" parent="openacademy_menu" action="contact_list_action"/>
 
     <record id="partner_view_search" model="ir.ui.view">
         <field name="name">openacademy.partner.search</field>
@@ -52,14 +46,34 @@
         <field name="res_model">res.partner.category</field>
         <field name="view_mode">tree,form</field>
     </record>
-    <menuitem id="contact_cat_menu" name="Contact Tags" parent="openacademy_menu" action="contact_cat_list_action"/>
-
+    
     <record model="res.partner.category" id="teacher1">
         <field name="name">Teacher / Level 1</field>
     </record>
     <record model="res.partner.category" id="teacher2">
         <field name="name">Teacher / Level 2</field>
     </record>
+
+    <menuitem 
+                id="configuration_menu" 
+                name="People" 
+                parent="main_openacademy_menu"
+    />
+    <!-- <menuitem id="contact_menu" name="Contacts" parent="configuration_menu" action="contact_list_action"/> -->
+    <menuitem 
+                id="contact_menu" 
+                name="Contacts"    
+                parent="configuration_menu" 
+                action="contact_list_action" 
+    />
+
+    <menuitem 
+                id="contact_cat_menu" 
+                name="Contact Tags" 
+                parent="configuration_menu" 
+                action="contact_cat_list_action"
+    />
+
 
 </odoo>
 
