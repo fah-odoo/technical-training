@@ -22,6 +22,15 @@ class Course(models.Model):
     # course_id corresponds to session_ids                                 
     session_ids=fields.One2many('openacademy.session', 'course_id', string="Sessions")
 
+    # Number of sessions for a course
+    session_count = fields.Integer(compute="_compute_session_count")
+
+    @api.depends('session_ids')
+    def _compute_session_count(self):
+        for course in self:
+            course.session_count = len(course.session_ids)
+
+
     level = fields.Selection(
         [(1, 'Easy'), (2, 'Medium'), (3, 'Hard')], string="Difficulty Level")
 
@@ -59,7 +68,12 @@ class Session(models.Model):
     # The start date is today if not specified
     start_date = fields.Date(default=fields.Date.today)
     duration = fields.Float(digits=(6, 2), help="Duration in days")
+    end_date = fields.Date(default=fields.Date.today)
+
     seats = fields.Integer(string="Number of seats")
+
+    level = fields.Selection(related='course_id.level', readonly=True)
+
 
     # Sessions are active (not archived) by default
     active = fields.Boolean(default=True)

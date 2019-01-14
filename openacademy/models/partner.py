@@ -1,5 +1,5 @@
 # -*- coding: utf-8 -*-
-from odoo import fields, models
+from odoo import fields, models, api
 
 
 class Partner(models.Model):
@@ -10,3 +10,10 @@ class Partner(models.Model):
 
     session_ids = fields.Many2many('openacademy.session',
                                    string="Attended Sessions", readonly=True)
+
+    session_count = fields.Integer(compute="_compute_session_count")
+
+    @api.depends('session_ids')
+    def _compute_session_count(self):
+        for partner in self:
+            partner.session_count = len(partner.session_ids)

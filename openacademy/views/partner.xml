@@ -32,7 +32,7 @@
         <field name="res_model">res.partner.category</field>
         <field name="view_mode">tree,form</field>
     </record>
-    <menuitem id="contact_cat_menu" name="Contact Tags" parent="contact_menu" action="contact_cat_list_action"/>
+    <menuitem id="contact_cat_menu" name="Contact Tags" parent="openacademy_menu" action="contact_cat_list_action"/>
 
     <record model="res.partner.category" id="teacher1">
         <field name="name">Teacher / Level 1</field>
