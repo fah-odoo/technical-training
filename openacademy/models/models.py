@@ -109,10 +109,10 @@ class Session(models.Model):
                     session.seats, len(session.attendee_ids)))
 
     # maximum seats using sql constraints
-    _sql_constraints = [
-        # possible only if taken_seats is stored
-        ('session_full', 'CHECK(taken_seats <= 100)', 'The room is full'),
-    ]
+    # _sql_constraints = [
+    #     # possible only if taken_seats is stored
+    #     ('session_full', 'CHECK(taken_seats <= 100)', 'The room is full'),
+    # ]
 
 
     @api.onchange('seats', 'attendee_ids')

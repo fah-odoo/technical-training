@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <odoo>
-    <record id="customer_daenerys" model="library.customer">
+    <!-- <record id="customer_daenerys" model="library.customer">
         <field name="name">Daenerys Targaryan</field>
         <field name="email">daenerys@targaryan.org</field>
         <field name="address">Top of the Pyramid, Mereen</field>
@@ -24,5 +24,5 @@
 
     <record id="publisher_got" model="library.publisher">
         <field name="name">Bantam Spectra</field>
-    </record>
+    </record> -->
 </odoo>
