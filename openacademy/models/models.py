@@ -15,7 +15,7 @@ class Course(models.Model):
     name = fields.Char(string="Title", required=True)
     description = fields.Text()
 
-    # There can be several people responsible for a course
+    # One person can be responsible for several courses
     responsible_id = fields.Many2one('res.users',
                                      ondelete='set null', string="Responsible", index=True)
 
