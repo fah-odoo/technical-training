@@ -5,6 +5,7 @@ from odoo import fields, models, api
 class Partner(models.Model):
     _inherit = 'res.partner'
 
+    #no _name!
     # Add a new column to the res.partner model, by default partners are not instructors
     instructor = fields.Boolean("Instructor", default=False)
 
