@@ -94,7 +94,7 @@ class Session(models.Model):
     # There can be several attendees for a course session. There can be several course sessions for an attendee.                            
     attendee_ids = fields.Many2many('res.partner', string="Attendees")
 
-    taken_seats = fields.Float(string="Taken seats", compute='_taken_seats')
+    taken_seats = fields.Float(string="Taken seats", compute='_taken_seats', store='True')
 
     # maximum seats using depends
     @api.depends('seats', 'attendee_ids')
@@ -123,10 +123,10 @@ class Session(models.Model):
                     session.seats, len(session.attendee_ids)))
 
     # maximum seats using sql constraints
-    # _sql_constraints = [
-    #     # possible only if taken_seats is stored
-    #     ('session_full', 'CHECK(taken_seats <= 100)', 'The room is full'),
-    # ]
+    _sql_constraints = [
+        # possible only if taken_seats is stored
+        ('session_full', 'CHECK(taken_seats <= 100)', 'The room is full'),
+    ]
 
 
     @api.onchange('seats', 'attendee_ids')
