@@ -6,11 +6,13 @@ from odoo import api, exceptions, fields, models
 
 class openacademy(models.Model):
     _name = 'openacademy.openacademy'
+    _description = 'Open Academy'
 
     name = fields.Char()
 
 class Course(models.Model):
     _name = 'openacademy.course'
+    _description = 'Course'
 
     name = fields.Char(string="Title", required=True)
     description = fields.Text()
@@ -62,6 +64,10 @@ class Course(models.Model):
 
 class Session(models.Model):
     _name = 'openacademy.session'
+    _description = 'Session'
+
+    # OpenChatter
+    _inherit = ['mail.thread']
 
     name = fields.Char(required=True)
 
