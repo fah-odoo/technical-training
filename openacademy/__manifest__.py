@@ -30,6 +30,7 @@
 
     # always loaded
     'data':        [
+        "security/security.xml",
         "security/ir.model.access.csv",
         "views/course_view.xml",
         "views/partner_view.xml",
