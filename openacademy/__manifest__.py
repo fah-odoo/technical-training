@@ -35,9 +35,10 @@
         "views/partner_view.xml",
         "views/session_view.xml",
         "views/menu_view.xml",
+        "demo/demo.xml",
     ],
     # only loaded in demonstration mode
     'demo':        [
-        "demo/demo.xml",
+        # "demo/demo.xml",
     ],
 }
