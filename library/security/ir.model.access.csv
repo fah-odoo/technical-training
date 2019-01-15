@@ -5,3 +5,4 @@ customer_manager,Customer Manager,model_library_customer,,1,1,1,1
 author_manager,Author Manager,model_library_author,,1,1,1,1
 book_manager,Book Manager,model_library_book,,1,1,1,1
 library_manager,Library Manager,model_library_library,,1,1,1,1
+access_library_bookinstance,access_library_bookinstance,model_library_bookinstance,base.group_user,1,1,1,1

@@ -19,8 +19,9 @@ class Book(models.Model):
 
     rental_ids = fields.One2many('library.rental', 'book_id', string='Rentals')
 
-# class BookInstance(models.Model):    
-#     _name = 'library.bookinstance'
+class BookInstance(models.Model):    
+     _name = 'library.bookinstance'
+     
 #     _description = 'Book instance'
 
 #     customer_id = fields.Many2one('library.customer', string='Customer')

@@ -49,7 +49,7 @@
         <field name="duration">50</field>
         <field name="instructor_id" ref="maesterAemon"/>
         <field name="course_id" ref="courseFencing1"/>
-        <field name="state">confirmed</field>
+        <field name="state">draft</field>
     </record>
 
 </odoo>
