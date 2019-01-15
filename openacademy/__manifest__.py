@@ -23,18 +23,18 @@
     # Check https://github.com/odoo/odoo/blob/master/odoo/addons/base/data/ir_module_category_data.xml
     # for the full list
     'category':    'OpenAcademy',
-    'version':     '0.3',
+    'version':     '0.4',
 
     # any module necessary for this one to work correctly
     'depends':     ['base', 'mail'],
 
     # always loaded
     'data':        [
-        
-        "data/openacademy_data.xml",
         "security/ir.model.access.csv",
-        "views/openacademy.xml",
-        "views/partner.xml",
+        "views/course_view.xml",
+        "views/partner_view.xml",
+        "views/session_view.xml",
+        "views/menu_view.xml",
     ],
     # only loaded in demonstration mode
     'demo':        [

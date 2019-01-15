@@ -17,7 +17,7 @@
     <record model="openacademy.course" id="courseFencing1">
         <field name="name">Course: Fencing Lvl1</field>
         <field name="description"> Mandatory. For people with little or no fencing experience.
-        Basics of footwork, techniques for the foil, epee, and sabre. 
+        Basics of footwork, techniques for the foil, epee, and sabre.
         </field>
         <field name="responsible_id" ref="userLost"/>
         <field name="level">1</field>
