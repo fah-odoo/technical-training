@@ -138,7 +138,8 @@ class Session(models.Model):
 
     # There can be several attendees for a course session. There can be several course sessions for an attendee.                            
     attendee_ids = fields.Many2many('res.partner', string="Attendees")
-    attendees_count = fields.Integer(compute='_get_attendees_count', store=True)
+    attendees_count = fields.Integer(
+        string="Attendees count", compute='_get_attendees_count', store=True)
 
     taken_seats = fields.Float(string="Taken seats", compute='_taken_seats', store='True')
     
