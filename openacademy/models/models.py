@@ -99,9 +99,10 @@ class Session(models.Model):
 
     # There can be several attendees for a course session. There can be several course sessions for an attendee.                            
     attendee_ids = fields.Many2many('res.partner', string="Attendees")
+    attendees_count = fields.Integer(compute='_get_attendees_count', store=True)
 
     taken_seats = fields.Float(string="Taken seats", compute='_taken_seats', store='True')
-
+    
     # maximum seats using depends
     @api.depends('seats', 'attendee_ids')
     def _taken_seats(self):
@@ -110,6 +111,37 @@ class Session(models.Model):
                 r.taken_seats = 0.0
             else:
                 r.taken_seats = 100.0 * len(r.attendee_ids) / r.seats
+
+    @api.depends('attendee_ids')
+    def _get_attendees_count(self):
+        for session in self:
+            session.attendees_count = len(session.attendee_ids)
+
+    @api.multi
+    def action_draft(self):
+        for rec in self:
+            rec.state = 'draft'
+            rec.message_post(body="Session %s of the course %s reset to draft" % (
+                rec.name, rec.course_id.name))
+
+    @api.multi
+    def action_confirm(self):
+        for rec in self:
+            rec.state = 'confirmed'
+            rec.message_post(body="Session %s of the course %s confirmed" % (
+                rec.name, rec.course_id.name))
+
+    @api.multi
+    def action_done(self):
+        for rec in self:
+            rec.state = 'done'
+            rec.message_post(body="Session %s of the course %s done" %
+                             (rec.name, rec.course_id.name))
+
+    def _auto_transition(self):
+        for rec in self:
+            if rec.taken_seats >= 50.0 and rec.state == 'draft':
+                rec.action_confirm()
 
     # maximum seats using onchange
     @api.onchange('seats', 'attendee_ids')
