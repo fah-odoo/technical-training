@@ -122,6 +122,9 @@ class Session(models.Model):
 
     # Sessions are active (not archived) by default
     active = fields.Boolean(default=True)
+
+    color = fields.Integer()
+
     # One instructor can teach several course sessions
     
     # instructor is set to True OR the name contains (case insensitive) "teacher"
