@@ -1,12 +1,28 @@
 <odoo>
 
+    <record id="teacher1" model="res.partner.category">
+        <field name="name">Chain Level 1</field>
+    </record>
+
+    <record id="teacher2" model="res.partner.category">
+        <field name="name">Chain Level 2</field>
+    </record>
+
+    <record id="userLost" model="res.users">
+        <field name="name">John</field>
+        <field name="login">lost@odoo.com</field>
+        <field name="password">odoo</field>
+    </record>
+
     <record model="openacademy.course" id="courseFencing1">
         <field name="name">Course: Fencing Lvl1</field>
         <field name="description"> Mandatory. For people with little or no fencing experience.
         Basics of footwork, techniques for the foil, epee, and sabre. 
         </field>
+        <field name="responsible_id" ref="userLost"/>
         <field name="level">1</field>
     </record>
+
     <record model="openacademy.course" id="courseFencing2">
         <field name="name">Course: Fencing Lvl2</field>
         <field name="description"> Mandatory. Advancement of fencing movements (footwork and blade work), improvement of tactical abilities, fitness. 
@@ -35,29 +51,6 @@
         <field name="course_id" ref="courseFencing1"/>
         <field name="state">confirmed</field>
     </record>
-
-
-    <!--  -->
-    <!--   <record id="object0" model="openacademy.openacademy"> -->
-    <!--     <field name="name">Object 0</field> -->
-    <!--   </record> -->
-    <!--  -->
-    <!--   <record id="object1" model="openacademy.openacademy"> -->
-    <!--     <field name="name">Object 1</field> -->
-    <!--   </record> -->
-    <!--  -->
-    <!--   <record id="object2" model="openacademy.openacademy"> -->
-    <!--     <field name="name">Object 2</field> -->
-    <!--   </record> -->
-    <!--  -->
-    <!--   <record id="object3" model="openacademy.openacademy"> -->
-    <!--     <field name="name">Object 3</field> -->
-    <!--   </record> -->
-    <!--  -->
-    <!--   <record id="object4" model="openacademy.openacademy"> -->
-    <!--     <field name="name">Object 4</field> -->
-    <!--   </record> -->
-    <!--  -->
 
 </odoo>
 
