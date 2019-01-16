@@ -186,6 +186,24 @@ class Session(models.Model):
             if rec.taken_seats >= 50.0 and rec.state == 'draft':
                 rec.action_confirm()
 
+    # Overwriting Odoo's write and create functions
+    @api.multi
+    def write(self, vals):
+        res = super(Session, self).write(vals)
+        for rec in self:
+            rec._auto_transition()
+        if vals.get('instructor_id'):
+            self.message_subscribe([vals['instructor_id']])
+        return res
+
+    @api.model
+    def create(self, vals):
+        res = super(Session, self).create(vals)
+        res._auto_transition()
+        if vals.get('instructor_id'):
+            res.message_subscribe([vals['instructor_id']])
+        return res
+
     # maximum seats using onchange
     @api.onchange('seats', 'attendee_ids')
     def _change_taken_seats(self):
