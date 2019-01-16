@@ -97,11 +97,13 @@
                     <button name="action_draft" type="object" string="Reset to draft" attrs="{'invisible' : [('state', '=', 'draft')] }"/>
                     <button name="action_confirm" type="object" string="Confirm" attrs="{'invisible' : [('state', 'in', ('confirmed', 'done'))] }" class="oe_highlight"/>
                     <button name="action_done" type="object" string="Mark as done" attrs="{'invisible' : [('state', 'in', ('draft', 'done'))] }" class="oe_highlight"/>
+                    <button name="create_invoice_teacher" string="Invoice Teacher" type="object" attrs="{'invisible' : [('is_paid', '=', True)]}"/>
                     <field name="state" widget="statusbar"/>
                 </header>
                 <sheet>
                     <group>
                         <group string="General">
+                            <field name="is_paid" invisible="1"/>
                             <field name="course_id"/>
                             <field name="name"/>
                             <field name="instructor_id"/>
