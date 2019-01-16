@@ -12,6 +12,24 @@
         <field name="name">John</field>
         <field name="login">lost@odoo.com</field>
         <field name="password">odoo</field>
+        <field name="category_id" eval="[(4,ref('teacher1'),0)]"/>
+        <field name="groups_id" eval="[(4, ref('group_maesters'))]"/>
+    </record>
+
+    <record id="fahLost" model="res.users">
+        <field name="name">Fahfah</field>
+        <field name="login">fahlost@odoo.com</field>
+        <field name="password">odoo</field>
+        <field name="groups_id" eval="[(4, ref('group_apprentices'))]"/>
+        <!-- not working. because of Many2one or One2many status... -->
+        <!-- <field name="groups_id" ref="group_apprentices"/> -->
+    </record>
+
+    <record id="lolLost" model="res.users">
+        <field name="name">Lol</field>
+        <field name="login">lollost@odoo.com</field>
+        <field name="password">odoo</field>
+        <field name="groups_id" eval="[(4, ref('group_apprentices'))]"/>
     </record>
 
     <record model="openacademy.course" id="courseFencing1">

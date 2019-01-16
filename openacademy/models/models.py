@@ -3,7 +3,6 @@
 # exceptions is for constrains()
 from odoo import api, exceptions, fields, models
 from datetime import timedelta
-
 class openacademy(models.Model):
     _name = 'openacademy.openacademy'
     _description = 'Open Academy'
@@ -32,6 +31,14 @@ class Course(models.Model):
         for course in self:
             course.session_count = len(course.session_ids)
 
+    # Total attendee count
+    attendee_count = fields.Integer(compute="_compute_attendee_count")
+
+    @api.depends('session_ids.attendees_count')
+    def _compute_attendee_count(self):
+        for course in self:
+            course.attendee_count = len(
+                course.mapped('session_ids.attendee_ids'))
 
     level = fields.Selection(
         [(1, 'Easy'), (2, 'Medium'), (3, 'Hard')], string="Difficulty Level")
@@ -89,7 +96,6 @@ class Session(models.Model):
         for r in self:
             r.duration = r.hours / 24
 
-
     @api.depends('start_date', 'duration')
     def _get_end_date(self):
         for r in self:
@@ -119,7 +125,6 @@ class Session(models.Model):
 
     level = fields.Selection(related='course_id.level', readonly=True)
 
-
     # Sessions are active (not archived) by default
     active = fields.Boolean(default=True)
 
@@ -131,7 +136,6 @@ class Session(models.Model):
     instructor_id = fields.Many2one('res.partner', string="Instructor",
                                     domain=['|', ('instructor', '=', True),
                                             ('category_id.name', 'ilike', "Teacher")])
-
 
     state = fields.Selection([('draft', "Draft"), ('confirmed', "Confirmed"), ('done', "Done")], default='draft')
     
@@ -227,7 +231,6 @@ class Session(models.Model):
         ('session_full', 'CHECK(taken_seats <= 100)', 'The room is full'),
     ]
 
-
     @api.onchange('seats', 'attendee_ids')
     def _verify_valid_seats(self):
         if self.seats < 0:
@@ -250,5 +253,3 @@ class Session(models.Model):
         for r in self:
             if r.instructor_id and r.instructor_id in r.attendee_ids:
                 raise exceptions.ValidationError("A session's instructor can't be an attendee")
-
-

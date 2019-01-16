@@ -1,6 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <odoo>
-
     <!-- top level menu: no parent -->
     <menuitem id="main_openacademy_menu" name="Open Academy" web_icon="openacademy,static/description/icon.png" />
     <!-- A first level in the left side menu is needed

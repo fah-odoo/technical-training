@@ -32,11 +32,11 @@
     'data':        [
         "security/security.xml",
         "security/ir.model.access.csv",
+        "demo/demo.xml",
         "views/course_view.xml",
         "views/partner_view.xml",
         "views/session_view.xml",
         "views/menu_view.xml",
-        "demo/demo.xml",
     ],
     # only loaded in demonstration mode
     'demo':        [
