@@ -5,4 +5,3 @@ session_manager,Session Manager,model_openacademy_session,group_maesters,1,1,1,1
 session_read_all,Session All,model_openacademy_session,group_apprentices,1,0,0,0
 session_read_public,Session All,model_openacademy_session,,1,0,0,0
 partner_read_public,People All,model_res_partner,group_maesters,1,0,0,0
-partner_no_read,People No,model_res_partner,group_apprentices,0,0,0,0
