@@ -49,18 +49,5 @@
         </field>
     </record>
 
-    <!-- <record id="other_rule" model="ir.rule">
-        <field name="name">Restricted access for other users</field>
-        <field name="model_id" ref="model_openacademy_course"/>
-        <field name="groups" eval="[(4, ref('openacademy.group_apprentices'))]"/>
-        <field name="perm_read" eval="1"/>
-        <field name="perm_write" eval="0"/>
-        <field name="perm_create" eval="0"/>
-        <field name="perm_unlink" eval="0"/>
-        <field name="domain_force">
-                [('user_ids', 'in', group_apprentices.ids)]
-        </field>
-    </record> -->
-
 </odoo>
 
