@@ -23,10 +23,10 @@
     # Check https://github.com/odoo/odoo/blob/master/odoo/addons/base/data/ir_module_category_data.xml
     # for the full list
     'category':    'OpenAcademy',
-    'version':     '0.7',
+    'version':     '0.8',
 
     # any module necessary for this one to work correctly
-    'depends':     ['base', 'mail', 'account', 'product'],
+    'depends':     ['base', 'mail', 'account', 'product', 'board'],
 
     # always loaded
     'data':        [
@@ -37,6 +37,7 @@
         "views/partner_view.xml",
         "views/session_view.xml",
         "views/menu_view.xml",
+        "report/report.xml",
     ],
     # only loaded in demonstration mode
     'demo':        [
