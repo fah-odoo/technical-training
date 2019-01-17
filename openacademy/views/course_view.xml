@@ -36,10 +36,17 @@
             <search>
                 <field name="name"/>
                 <field name="description"/>
-                <!-- if you always want the "My Courses" filter -->
-                <!-- <filter name="my_courses" string="My Courses" domain="[('responsible_id', '=', uid)]"/> -->
+                <filter 
+                        name="my_courses" 
+                        string="My Courses" 
+                        domain="[('responsible_id', '=', uid)]"
+                />
                 <group string="Group By">
-                    <filter name="by_responsible" string="Responsible" context="{'group_by': 'responsible_id'}"/>
+                    <filter 
+                            name="by_responsible" 
+                            string="Responsible" 
+                            context="{'group_by': 'responsible_id'}"
+                    />
                 </group>
             </search>
         </field>

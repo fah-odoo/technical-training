@@ -6,7 +6,12 @@
         <field name="name">session.calendar</field>
         <field name="model">openacademy.session</field>
         <field name="arch" type="xml">
-            <calendar string="Session Calendar" date_start="start_date" date_stop="end_date" color="instructor_id">
+            <calendar 
+                        string="Session Calendar" 
+                        date_start="start_date" 
+                        date_stop="end_date" 
+                        color="instructor_id"
+            >
                 <field name="name"/>
             </calendar>
         </field>
@@ -16,7 +21,12 @@
         <field name="name">session.gantt</field>
         <field name="model">openacademy.session</field>
         <field name="arch" type="xml">
-            <gantt string="Session Gantt" date_start="start_date" date_delay="hours" default_group_by='instructor_id'>
+            <gantt 
+                    string="Session Gantt" 
+                    date_start="start_date" 
+                    date_delay="hours" 
+                    default_group_by='instructor_id'
+            >
                 <!-- <field name="name"/> this is not required after Odoo 10.0 -->
             </gantt>
         </field>
@@ -143,12 +153,24 @@
 
                         </group>
                     </group>
-                    <label for="attendee_ids" groups="openacademy.group_maesters"/>
-                    <field name="attendee_ids" groups="openacademy.group_maesters"/>
+                    <label 
+                            for="attendee_ids" 
+                            groups="openacademy.group_maesters"
+                    />
+                    <field 
+                            name="attendee_ids" 
+                            groups="openacademy.group_maesters"
+                    />
                 </sheet>
                 <div class="oe_chatter">
-                    <field name="message_follower_ids" widget="mail_followers"/>
-                    <field name="message_ids" widget="mail_thread"/>
+                    <field 
+                            name="message_follower_ids" 
+                            widget="mail_followers"
+                    />
+                    <field 
+                            name="message_ids" 
+                            widget="mail_thread"
+                    />
                 </div>
             </form>
         </field>
@@ -159,7 +181,11 @@
         <field name="name">session.tree</field>
         <field name="model">openacademy.session</field>
         <field name="arch" type="xml">
-            <tree string="Session Tree" decoration-info="duration&lt;5" decoration-danger="duration&gt;15">
+            <tree 
+                    string="Session Tree" 
+                    decoration-info="duration&lt;5" 
+                    decoration-danger="duration&gt;15"
+            >
                 <field name="name"/>
                 <field name="course_id"/>
                 <field name="duration" invisible="1"/>
@@ -179,7 +205,12 @@
                     <field name="session_ids"/>
                 </group>
                 <footer>
-                    <button name="subscribe" type="object" string="Subscribe" class="oe_highlight"/>
+                    <button 
+                            name="subscribe" 
+                            type="object" 
+                            string="Subscribe" 
+                            class="oe_highlight"
+                    />
                         or
                     <button special="cancel" string="Cancel"/>
                 </footer>
