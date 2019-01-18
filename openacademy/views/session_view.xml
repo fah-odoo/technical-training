@@ -134,6 +134,15 @@
                             attrs="{'invisible' : [('is_paid', '=', True)]}"
                             groups="openacademy.group_maesters"
                             />
+
+                    <button 
+                            name="openacademy.report_session" 
+                            string="Print Session" 
+                            type="action" 
+                            icon="gtk-print"
+                    />
+
+
                     <field name="state" widget="statusbar"/>
                 </header>
                 <sheet>
